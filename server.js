@@ -24,9 +24,13 @@ db.connect();
 
 // homepage
 app.get('/', (req, res) => {
-  console.log(req.cookies);
-  // __dirname is the current directory/file
-  res.sendFile(__dirname + '\\client\\index.html');
+  // if token cookie exists then we want to display the homepage
+  if (req.cookies.token) {
+    // __dirname is the current directory/file
+    res.sendFile(__dirname + '\\client\\index.html');
+  } else {
+    res.redirect('/');
+  }
 });
 
 // register get request - html page
