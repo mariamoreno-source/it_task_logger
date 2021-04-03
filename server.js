@@ -17,13 +17,25 @@ const db = mysql.createConnection({
   database: 'tech4513',
 });
 
+// Connect to mysql database
 db.connect();
+
+
+
+
 
 // homepage
 app.get('/', (req, res) => {
   // __dirname is the current directory/file
   res.sendFile(__dirname + '\\client\\index.html');
 });
+
+
+
+
+
+
+
 
 // register page
 app.post(
@@ -101,7 +113,12 @@ app.post(
   }
 );
 
-// Get technician
+
+
+
+
+
+// Get route technicians
 app.get('/users', (req, res) => {
   const sql = 'SELECT FirstName, LastName FROM user';
 
@@ -112,7 +129,12 @@ app.get('/users', (req, res) => {
   });
 });
 
-// server startr
+
+
+
+
+
+// server start listening on port 7000
 app.listen(7000, (err) => {
   if (err) throw err;
 
