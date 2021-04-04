@@ -4,7 +4,7 @@ const mysql = require('mysql');
 
 const bcrypt = require('bcryptjs'); // For hashing password
 const jwt = require('jsonwebtoken'); // For sending/decrypting tokens
-const config = require('config'); // Config used to obtain JWT secret
+const config = require('config'); // Config used to obtain JWT secret key
 
 const app = express();
 //to handle json body requests
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
         // Cookies are read in static/fetch.js
         res.cookie('client', result[0].Client);
 
-        // If the user does exist and is a technician, send the index html page
+        // If the user does exist, send the index html page
         res.sendFile(__dirname + '\\client\\index.html');
       }
     });
@@ -79,7 +79,7 @@ app.post('/register', (req, res) => {
   let { FirstName, LastName, Password, Client } = req.body;
 
   try {
-    // Check if already exists in DB before adding
+    // Check if user already exists in DB before adding
     const sqlCheckUser =
       'SELECT * FROM tech4513.user WHERE FirstName = ? and LastName = ?;';
 
@@ -96,7 +96,7 @@ app.post('/register', (req, res) => {
         );
         // respond with status 400 (user request error) and description of error
         return res.status(400).json({
-          Error: 'User ' + FirstName + ' ' + LastName + ' already taken',
+          Error: 'User ' + FirstName + ' ' + LastName + ' already exists',
         });
       } else {
         // Encrypt the password
@@ -307,7 +307,7 @@ app.post('/systemlog', (req, res) => {
     (err, result) => {
       if (err) {
         console.error('Error: ', err);
-        res.status(500).send('Database error, check NodeJS');
+        res.status(500).send('Database error');
       }
 
       console.log('system log ticket created successfully');
