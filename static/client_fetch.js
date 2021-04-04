@@ -46,8 +46,8 @@ function fetchTechs() {
 
 // Check if logged in user is a client (equal to 1)
 if (
-  document.cookie.split(';')[0] == 'client=1' ||
-  document.cookie.split(';')[1] == 'client=1'
+  document.cookie.split(';')[0].trim() == 'client=1' ||
+  document.cookie.split(';')[1].trim() == 'client=1'
 ) {
   fetchTechs();
 }

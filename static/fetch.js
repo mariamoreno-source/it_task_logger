@@ -62,8 +62,8 @@ function fetchTickets() {
 // If client = 0, then we know a technician is logged into
 // the dashboard. We show all the tickets assigned to him/her
 if (
-  document.cookie.split(';')[0] == 'client=0' ||
-  document.cookie.split(';')[1] == 'client=0'
+  document.cookie.split(';')[0].trim() == 'client=0' ||
+  document.cookie.split(';')[1].trim() == 'client=0'
 ) {
   fetchTickets();
 }
