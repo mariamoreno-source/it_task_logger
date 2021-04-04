@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Systemlog Request</title>
+</head>
+<body>
+  <form method="POST" action="/systemlog" id="client_form">
+    <h1>Create a Ticket</h1>
+    <!-- Technician should contain First, Last name and UserID -->
+    <label for="technicians">Choose a technician: </label>
+
+    <select name="technicians" id="technicians"></select>
+    <br><br>
+
+    <label for="Description">Description (Max 100 characters): </label>
+    <textarea rows="4" cols="20" name="Description" id="Description" required maxlength="100"></textarea>
+    <br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+<script src="static/client_fetch.js"></script>
+</html>
